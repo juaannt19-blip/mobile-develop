@@ -2,592 +2,657 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#6366f1" />
-    <link rel="icon" href="icons/icon-192x192-A.png" type="image/png" /> //lokas foto icon (bisa diganti)
-    <!-- ini untuk icon -->
-    <link rel="manifest" href="manifest.json">
-    <!-- untuk paw bulder (untuk mengubah menjadi android)  -->
-    <title>TaskFlow - Kelola Tugas Anda</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0F172A" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/logo1.png" type="image/png" />
+  <title>SarprasID — Pelaporan Fasilitas Kampus</title>
+  <style>
+    /* RESET & GLOBAL — tampilan handmade, industrial modern */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
-            --bg-dark: #ffffff;
-            --bg-card: #1e293b;
-            --text-light: #f8fafc;
-            --text-gray: #cbd5e1;
-            --success: #22c55e;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: #F1F5F9;
+      color: #0F172A;
+      line-height: 1.5;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1856bb 100%);
-            color: var(--text-light);
-            min-height: 100vh;
-            padding-bottom: 80px;
-        }
+    /* custom scroll */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E2E8F0;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94A3B8;
+      border-radius: 10px;
+    }
 
-        .header {
-            background: #1856bb;
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
+    /* header industrial */
+    .site-header {
+      background: #0F172A;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 3px solid #F59E0B;
+    }
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .brand h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand span {
+      background: #F59E0B;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 30px;
+      color: #0F172A;
+      margin-left: 8px;
+    }
+    .brand p {
+      color: #94A3B8;
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+    .badge-version {
+      background: #1E293B;
+      padding: 6px 12px;
+      border-radius: 40px;
+      color: #CBD5E1;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
 
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* main layout */
+    .app-wrapper {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 2rem;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+    /* card style — rough edge, subtle shadow */
+    .card-panel {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+      overflow: hidden;
+      border: 1px solid #E9EEF3;
+    }
+    .card-header {
+      padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+      border-bottom: 2px solid #F1F5F9;
+    }
+    .card-header h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #0F172A;
+    }
+    .card-header p {
+      font-size: 0.8rem;
+      color: #475569;
+      margin-top: 6px;
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-        }
+    /* form styling — professional, dense */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-row .form-group {
+      flex: 1;
+    }
+    label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #334155;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: #F8FAFE;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #F59E0B;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0.5rem 0 0.25rem;
+    }
+    .btn {
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: 0.15s;
+      background: #F1F5F9;
+      color: #1E293B;
+    }
+    .btn-primary {
+      background: #0F172A;
+      color: white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .btn-primary:hover {
+      background: #F59E0B;
+      color: #0F172A;
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #CBD5E1;
+    }
+    .btn-outline:hover {
+      border-color: #F59E0B;
+      background: #FFF8ED;
+    }
+    .btn-danger-light {
+      background: #FEF2F2;
+      color: #B91C1C;
+    }
+    .photo-preview-grid {
+      margin-top: 12px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .preview-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid #E2E8F0;
+      background: #F1F5F9;
+    }
+    .location-box {
+      background: #F8FAFE;
+      border-radius: 20px;
+      padding: 0.9rem;
+      margin-top: 8px;
+      border: 1px solid #E9EEF3;
+      font-size: 0.8rem;
+    }
+    .coord-text {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #334155;
+      word-break: break-all;
+    }
 
-        h1 {
-            font-size: 24px;
-            font-weight: 700;
-        }
+    /* daftar laporan */
+    .report-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 560px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .report-ticket {
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 1px solid #ECF3F9;
+      padding: 1rem;
+      transition: 0.1s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .ticket-type {
+      font-weight: 800;
+      background: #F1F5F9;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+    }
+    .status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+    .status.pending { background: #FEF3C7; color: #B45309; }
+    .status.progress { background: #DBEAFE; color: #1E40AF; }
+    .status.done { background: #D1FAE5; color: #065F46; }
+    .ticket-location {
+      font-size: 0.75rem;
+      color: #475569;
+      margin: 8px 0 6px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ticket-desc {
+      font-size: 0.85rem;
+      margin: 8px 0;
+      color: #1E293B;
+    }
+    .ticket-img {
+      max-width: 100%;
+      max-height: 130px;
+      border-radius: 14px;
+      margin: 8px 0;
+      border: 1px solid #E2E8F0;
+    }
+    .update-status-btn {
+      background: none;
+      border: 1px solid #E2E8F0;
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 30px;
+      margin-top: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .footer-note {
+      text-align: center;
+      margin: 2rem auto 1rem;
+      font-size: 0.7rem;
+      color: #64748B;
+      border-top: 1px solid #E2E8F0;
+      padding-top: 1.5rem;
+      max-width: 1280px;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
 
-        .stats {
-            display: flex;
-            gap: 16px;
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .stat-number {
-            color: var(--primary-light);
-            font-weight: 700;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 24px 20px;
-        }
-
-        .input-section {
-            background: var(--bg-card);
-            padding: 24px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-        }
-
-        .input-group {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        input[type="text"] {
-            flex: 1;
-            padding: 14px 18px;
-            background: var(--bg-dark);
-            border: 2px solid rgba(99, 102, 241, 0.3);
-            border-radius: 12px;
-            color: var(--text-light);
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .priority-selector {
-            display: flex;
-            gap: 8px;
-        }
-
-        .priority-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background: transparent;
-            color: var(--text-gray);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .priority-btn.active {
-            border-color: currentColor;
-            background: rgba(255, 255, 255, 0.1);
-            font-weight: 600;
-        }
-
-        .priority-btn.high {
-            color: var(--danger);
-        }
-
-        .priority-btn.medium {
-            color: var(--warning);
-        }
-
-        .priority-btn.low {
-            color: var(--success);
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-        }
-
-        .filter-tab {
-            padding: 10px 20px;
-            background: var(--bg-card);
-            border: 2px solid transparent;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 500;
-            color: #ffffff;
-        }
-
-        .filter-tab.active {
-            background: var(--primary);
-            border-color: var(--primary-light);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        .tasks-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .task-item {
-            background: var(--bg-card);
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: all 0.3s ease;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .task-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        .task-item.high {
-            border-left-color: var(--danger);
-        }
-
-        .task-item.medium {
-            border-left-color: var(--warning);
-        }
-
-        .task-item.low {
-            border-left-color: var(--success);
-        }
-
-        .task-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--primary);
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-
-        .task-checkbox:hover {
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .task-checkbox.checked {
-            background: var(--primary);
-        }
-
-        .task-content {
-            flex: 1;
-        }
-
-        .task-text {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .task-text.completed {
-            text-decoration: line-through;
-            opacity: 0.6;
-        }
-
-        .task-meta {
-            display: flex;
-            gap: 12px;
-            font-size: 12px;
-            color: var(--text-gray);
-        }
-
-        .task-time {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .task-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-icon {
-            width: 36px;
-            height: 36px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 18px;
-        }
-
-        .btn-delete {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-        }
-
-        .btn-delete:hover {
-            background: var(--danger);
-            color: white;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-gray);
-        }
-
-        .empty-icon {
-            font-size: 64px;
-            margin-bottom: 16px;
-            opacity: 0.5;
-        }
-
-        .progress-bar {
-            background: var(--bg-card);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 16px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            transition: width 0.5s ease;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 640px) {
-            .header-content {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .input-group {
-                flex-direction: column;
-            }
-
-            .stats {
-                width: 100%;
-                justify-content: space-around;
-            }
-        }
-
-        .logo h1 {
-            font-size: 50px;
-            font-weight: 800;
-        }
-    </style>
+    @media (max-width: 780px) {
+      .app-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .site-header .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">✓</div>
-                <h1 class="text-judul">TaskFlow</h1>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <span>📝</span>
-                    <span>Total: <span class="stat-number" id="totalTasks">0</span></span>
-                </div>
-                <div class="stat-item">
-                    <span>✅</span>
-                    <span>Selesai: <span class="stat-number" id="completedTasks">0</span></span>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <div class="container">
-        <div class="input-section">
-            <div class="input-group">
-                <input type="text" id="taskInput" placeholder="Tambahkan tugas baru..."
-                    onkeypress="if(event.key==='Enter') addTask()" />
-                <button class="btn btn-primary" onclick="addTask()">
-                    <span>➕</span>
-                    <span>Tambah</span>
-                </button>
-            </div>
-            <div class="priority-selector">
-                <button class="priority-btn high" onclick="setPriority('high')">🔴 Tinggi</button>
-                <button class="priority-btn medium active" onclick="setPriority('medium')">🟡 Sedang</button>
-                <button class="priority-btn low" onclick="setPriority('low')">🟢 Rendah</button>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
-            </div>
-        </div>
-
-        <div class="filter-tabs">
-            <button class="filter-tab active" onclick="filterTasks('all')">Semua</button>
-            <button class="filter-tab" onclick="filterTasks('active')">Aktif</button>
-            <button class="filter-tab" onclick="filterTasks('completed')">Selesai</button>
-            <button class="filter-tab" onclick="filterTasks('high')">🔴 Prioritas Tinggi</button>
-            <button class="filter-tab" onclick="filterTasks('medium')">🟡 Prioritas Sedang</button>
-            <button class="filter-tab" onclick="filterTasks('low')">🟢 Prioritas Rendah</button>
-        </div>
-
-        <div class="tasks-list" id="tasksList"></div>
+<header class="site-header">
+  <div class="header-container">
+    <div class="brand">
+      <h1>⚙️ SARPRAS.ID <span>crowdsource</span></h1>
+      <p>Laporkan kerusakan fasilitas kampus · realtime & transparan</p>
     </div>
+    <div class="badge-version">versi 2.0 · offline ready</div>
+  </div>
+</header>
 
-    <script>
-        let tasks = [];
-        let currentPriority = 'medium';
-        let currentFilter = 'all';
+<div class="app-wrapper">
+  <!-- KIRI: FORM PELAPORAN + MEDIA + GPS -->
+  <div class="card-panel">
+    <div class="card-header">
+      <h2>📋 FORMULIR PELAPORAN</h2>
+      <p>Isi data kerusakan secara lengkap, sertakan foto & lokasi GPS</p>
+    </div>
+    <div class="card-body">
+      <form id="reportForm">
+        <div class="form-group">
+          <label>🏷️ JENIS FASILITAS</label>
+          <select id="facilityType" required>
+            <option value="" disabled selected>— pilih kategori —</option>
+            <option value="AC / HVAC">❄️ AC / HVAC tidak dingin</option>
+            <option value="Proyektor">📽️ Proyektor rusak / buram</option>
+            <option value="Bangku / Kursi">🪑 Bangku / Kursi patah</option>
+            <option value="Lampu Penerangan">💡 Lampu mati / redup</option>
+            <option value="Toilet / Sanitasi">🚽 Toilet mampet / rusak</option>
+            <option value="Infrastruktur Lain">🏗️ Lainnya (tulis di deskripsi)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>📍 LOKASI DETAIL (Gedung / Ruang)</label>
+          <input type="text" id="locationDetail" placeholder="contoh: Gedung Rektorat lt.3, Ruang Rapat Senat" required>
+        </div>
+        <div class="form-group">
+          <label>📝 DESKRIPSI KERUSAKAN</label>
+          <textarea id="description" rows="2" placeholder="Jelaskan kondisi kerusakan, sejak kapan, dan dampaknya ..." required></textarea>
+        </div>
 
-        function loadTasks() {
-            const saved = localStorage.getItem('taskflow_tasks');
-            if (saved) {
-                tasks = JSON.parse(saved);
-                renderTasks();
-            }
-        }
-
-        function saveTasks() {
-            localStorage.setItem('taskflow_tasks', JSON.stringify(tasks));
-        }
-
-        function setPriority(priority) {
-            currentPriority = priority;
-            document.querySelectorAll('.priority-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        function addTask() {
-            const input = document.getElementById('taskInput');
-            const text = input.value.trim();
-
-            if (text === '') return;
-
-            const task = {
-                id: Date.now(),
-                text: text,
-                completed: false,
-                priority: currentPriority,
-                createdAt: new Date().toLocaleString('id-ID')
-            };
-
-            tasks.unshift(task);
-            input.value = '';
-            saveTasks();
-            renderTasks();
-        }
-
-        function toggleTask(id) {
-            const task = tasks.find(t => t.id === id);
-            if (task) {
-                task.completed = !task.completed;
-                saveTasks();
-                renderTasks();
-            }
-        }
-
-        function deleteTask(id) {
-            tasks = tasks.filter(t => t.id !== id);
-            saveTasks();
-            renderTasks();
-        }
-
-        function filterTasks(filter) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            renderTasks();
-        }
-
-        function renderTasks() {
-            const container = document.getElementById('tasksList');
-
-            let filteredTasks = tasks;
-
-            if (currentFilter === 'active') {
-                filteredTasks = tasks.filter(t => !t.completed);
-            } else if (currentFilter === 'completed') {
-                filteredTasks = tasks.filter(t => t.completed);
-            } else if (['high', 'medium', 'low'].includes(currentFilter)) {
-                filteredTasks = tasks.filter(t => t.priority === currentFilter);
-            }
-
-            if (filteredTasks.length === 0) {
-                container.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-icon">📋</div>
-            <h3>Tidak ada tugas</h3>
-            <p>Mulai tambahkan tugas baru untuk memulai!</p>
+        <!-- FITUR KAMERA & FILE -->
+        <div class="form-group">
+          <label>📸 DOKUMENTASI FOTO (kamera / galeri)</label>
+          <div class="btn-group">
+            <button type="button" id="cameraActionBtn" class="btn btn-outline">📷 Buka Kamera</button>
+            <button type="button" id="galleryActionBtn" class="btn btn-outline">🖼️ Pilih dari Galeri</button>
           </div>
-        `;
-            } else {
-                container.innerHTML = filteredTasks.map(task => `
-          <div class="task-item ${task.priority}">
-            <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id})">
-              ${task.completed ? '✓' : ''}
-            </div>
-            <div class="task-content">
-              <div class="task-text ${task.completed ? 'completed' : ''}">${task.text}</div>
-              <div class="task-meta">
-                <span class="task-time">🕒 ${task.createdAt}</span>
-                <span>📌 ${task.priority === 'high' ? 'Tinggi' : task.priority === 'medium' ? 'Sedang' : 'Rendah'}</span>
-              </div>
-            </div>
-            <div class="task-actions">
-              <button class="btn-icon btn-delete" onclick="deleteTask(${task.id})">🗑️</button>
-            </div>
+          <input type="file" id="hiddenFileInput" accept="image/*" style="display:none">
+          <div id="photoPreviewContainer" class="photo-preview-grid"></div>
+          <small style="color:#5B6E8C;">* foto disimpan secara lokal (base64) untuk demo</small>
+        </div>
+
+        <!-- GPS -->
+        <div class="form-group">
+          <label>🌐 KOORDINAT GPS (otomatis)</label>
+          <button type="button" id="triggerGpsBtn" class="btn btn-outline">📍 Ambil Lokasi Saya</button>
+          <div id="gpsStatusBox" class="location-box">
+            <span id="gpsLabel">Belum tersedia — tekan tombol diatas</span>
           </div>
-        `).join('');
-            }
+          <input type="hidden" id="hiddenLat">
+          <input type="hidden" id="hiddenLng">
+        </div>
 
-            updateStats();
+        <div style="margin-top: 1.8rem;">
+          <button type="submit" id="submitMasterBtn" class="btn btn-primary" style="width:100%; padding: 0.85rem;">🚀 KIRIM LAPORAN KE SARPRAS</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- KANAN: DAFTAR LAPORAN & STATUS TRACKING -->
+  <div class="card-panel">
+    <div class="card-header">
+      <h2>📌 PELACAKAN STATUS LAPORAN</h2>
+      <p>Update langsung dari tim sarana & prasarana</p>
+    </div>
+    <div class="card-body" style="padding-top: 0.5rem;">
+      <div id="dynamicReportList" class="report-list">
+        <div style="text-align:center; padding:2rem; color:#94A3B8;">Memuat data laporan...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  <p>© 2025 Anwar Fauzi · LaporKampus · Setiap laporan akan diverifikasi oleh tim sarpras · Didukung PWA & GPS</p>
+  <p style="margin-top:6px;">
+    <button onclick="alert('PWA aktif!')" style="background:none; border:none; color:#F59E0B; cursor:pointer; font-size:0.7rem;">⚡ Tes Tombol PWA</button> 
+    <span style="margin:0 6px">|</span>
+    <button onclick="alert('tombol testing hidup')" style="background:none; border:none; color:#F59E0B; cursor:pointer; font-size:0.7rem;">🔘 Tombol 1 (testing)</button>
+  </p>
+</div>
+
+<script>
+  // ---------- STORAGE & DATA LAPORAN ----------
+  let reportsDatabase = [];
+
+  function loadReports() {
+    const stored = localStorage.getItem('sarpras_reports_v2');
+    if(stored) {
+      try {
+        reportsDatabase = JSON.parse(stored);
+      } catch(e) { reportsDatabase = []; }
+    } else {
+      // data demo supaya tidak kosong — tampilan lebih hidup
+      reportsDatabase = [
+        {
+          id: 240101,
+          facilityType: "AC / HVAC",
+          locationDetail: "Gedung Kuliah Bersama Lt.2, Ruang 207",
+          description: "AC mengeluarkan air dan tidak dingin, suhu ruangan 32°C",
+          latitude: -6.2088, longitude: 106.8456,
+          photoBase64: null,
+          status: "diproses",
+          timestamp: new Date(Date.now() - 2*86400000).toISOString()
+        },
+        {
+          id: 240102,
+          facilityType: "Proyektor",
+          locationDetail: "Gedung Teknik Sipil, Lab Komputer",
+          description: "Proyektor warna ungu kebiruan, tidak fokus saat presentasi",
+          latitude: -6.2105, longitude: 106.8482,
+          photoBase64: null,
+          status: "menunggu",
+          timestamp: new Date(Date.now() - 86400000).toISOString()
         }
+      ];
+      saveReports();
+    }
+    renderReportList();
+  }
 
-        function updateStats() {
-            const total = tasks.length;
-            const completed = tasks.filter(t => t.completed).length;
-            const progress = total > 0 ? (completed / total) * 100 : 0;
+  function saveReports() {
+    localStorage.setItem('sarpras_reports_v2', JSON.stringify(reportsDatabase));
+    renderReportList();
+  }
 
-            document.getElementById('totalTasks').textContent = total;
-            document.getElementById('completedTasks').textContent = completed;
-            document.getElementById('progressBar').style.width = progress + '%';
-        }
+  function renderReportList() {
+    const container = document.getElementById('dynamicReportList');
+    if(!reportsDatabase.length) {
+      container.innerHTML = `<div style="text-align:center; padding:2rem; background:#F8FAFE; border-radius:28px;">📭 Belum ada laporan. Kirim laporan pertama anda.</div>`;
+      return;
+    }
+    const sorted = [...reportsDatabase].reverse();
+    container.innerHTML = sorted.map(r => `
+      <div class="report-ticket" data-id="${r.id}">
+        <div class="ticket-header">
+          <span class="ticket-type">🔧 ${escapeHtml(r.facilityType)}</span>
+          <span class="status ${getStatusClass(r.status)}">${getStatusText(r.status)}</span>
+        </div>
+        <div class="ticket-location">
+          <span>📍 ${escapeHtml(r.locationDetail)}</span>
+          ${r.latitude && r.longitude ? `<span>🗺️ ${Number(r.latitude).toFixed(5)}, ${Number(r.longitude).toFixed(5)}</span>` : '<span>📍 koordinat tidak tersedia</span>'}
+        </div>
+        <div class="ticket-desc">📄 ${escapeHtml(r.description)}</div>
+        ${r.photoBase64 ? `<img src="${r.photoBase64}" class="ticket-img" alt="foto kerusakan" loading="lazy">` : `<div style="font-size:0.7rem; color:#64748B;">📷 tanpa foto</div>`}
+        <div style="font-size:0.65rem; color:#5B6E8C; margin:8px 0 4px;">📅 ${new Date(r.timestamp).toLocaleString('id-ID')}</div>
+        ${r.status !== 'selesai' ? `<button class="update-status-btn" data-id="${r.id}" data-current="${r.status}">↻ Ubah Status (simulasi progres)</button>` : ''}
+      </div>
+    `).join('');
 
-        loadTasks();
+    // Attach update status buttons
+    document.querySelectorAll('.update-status-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = parseInt(btn.getAttribute('data-id'));
+        updateSingleStatus(id);
+      });
+    });
+  }
 
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./service-worker.js')
-                    .then(() => console.log('Service Worker registered'))
-                    .catch(err => console.error('Service Worker error:', err));
-            });
-        }
-    </script>
+  function getStatusClass(status) {
+    if(status === 'menunggu') return 'pending';
+    if(status === 'diproses') return 'progress';
+    return 'done';
+  }
+  function getStatusText(status) {
+    if(status === 'menunggu') return '⏳ MENUNGGU';
+    if(status === 'diproses') return '🛠️ DIPROSES';
+    return '✅ SELESAI';
+  }
 
+  function updateSingleStatus(id) {
+    const idx = reportsDatabase.findIndex(r => r.id === id);
+    if(idx === -1) return;
+    const curr = reportsDatabase[idx].status;
+    if(curr === 'menunggu') reportsDatabase[idx].status = 'diproses';
+    else if(curr === 'diproses') reportsDatabase[idx].status = 'selesai';
+    else if(curr === 'selesai') return alert('Laporan sudah selesai, tidak dapat diubah lagi.');
+    saveReports();
+    alert(`✅ Status diperbarui menjadi ${reportsDatabase[idx].status === 'diproses' ? 'DIPROSES' : 'SELESAI'}`);
+  }
+
+  function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+  // ---------- FITUR KAMERA & FILE (integrasi hardware) ----------
+  let currentPhotoData = null;
+  const cameraBtn = document.getElementById('cameraActionBtn');
+  const galleryBtn = document.getElementById('galleryActionBtn');
+  const hiddenFile = document.getElementById('hiddenFileInput');
+  const previewContainer = document.getElementById('photoPreviewContainer');
+
+  cameraBtn.addEventListener('click', () => {
+    const captureInput = document.createElement('input');
+    captureInput.type = 'file';
+    captureInput.accept = 'image/*';
+    captureInput.capture = 'environment';
+    captureInput.onchange = (e) => {
+      if(captureInput.files && captureInput.files[0]) handleImageFile(captureInput.files[0]);
+    };
+    captureInput.click();
+  });
+  galleryBtn.addEventListener('click', () => hiddenFile.click());
+  hiddenFile.addEventListener('change', (e) => {
+    if(hiddenFile.files && hiddenFile.files[0]) handleImageFile(hiddenFile.files[0]);
+  });
+
+  function handleImageFile(file) {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      currentPhotoData = ev.target.result;
+      previewContainer.innerHTML = `
+        <img src="${currentPhotoData}" class="preview-img" alt="preview">
+        <button type="button" id="clearPhotoBtn" class="btn btn-danger-light" style="padding:6px 12px;">Hapus foto</button>
+      `;
+      const clearBtn = document.getElementById('clearPhotoBtn');
+      if(clearBtn) clearBtn.onclick = () => { currentPhotoData = null; previewContainer.innerHTML = ''; };
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ---------- GPS + PERMISSION ----------
+  let currentLat = null, currentLng = null;
+  const gpsBtn = document.getElementById('triggerGpsBtn');
+  const gpsStatusSpan = document.getElementById('gpsLabel');
+  const hiddenLat = document.getElementById('hiddenLat');
+  const hiddenLng = document.getElementById('hiddenLng');
+
+  gpsBtn.addEventListener('click', () => {
+    if(!navigator.geolocation) {
+      gpsStatusSpan.innerText = '❌ Browser tidak mendukung Geolocation';
+      return;
+    }
+    gpsStatusSpan.innerText = '📍 Mengakses GPS, mohon izinkan...';
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        currentLat = pos.coords.latitude;
+        currentLng = pos.coords.longitude;
+        hiddenLat.value = currentLat;
+        hiddenLng.value = currentLng;
+        gpsStatusSpan.innerHTML = `✅ Lokasi terekam: ${currentLat.toFixed(6)}, ${currentLng.toFixed(6)} (akurasi ±${Math.round(pos.coords.accuracy)}m)`;
+      },
+      (err) => {
+        let pesan = '';
+        if(err.code === 1) pesan = 'Izin lokasi ditolak. Aktifkan GPS pada perangkat.';
+        else if(err.code === 2) pesan = 'Lokasi tidak tersedia.';
+        else pesan = err.message;
+        gpsStatusSpan.innerText = `⚠️ Gagal: ${pesan}`;
+        hiddenLat.value = ''; hiddenLng.value = '';
+        currentLat = null;
+      },
+      { enableHighAccuracy: true, timeout: 12000 }
+    );
+  });
+
+  // ---------- SUBMIT LAPORAN ----------
+  const formReport = document.getElementById('reportForm');
+  formReport.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const facilityType = document.getElementById('facilityType').value;
+    const locationDetail = document.getElementById('locationDetail').value.trim();
+    const description = document.getElementById('description').value.trim();
+    if(!facilityType) { alert('Pilih jenis fasilitas yang rusak'); return; }
+    if(!locationDetail) { alert('Isi lokasi detail (gedung/ruangan)'); return; }
+    if(!description) { alert('Deskripsi kerusakan wajib diisi'); return; }
+
+    let latVal = hiddenLat.value ? parseFloat(hiddenLat.value) : null;
+    let lngVal = hiddenLng.value ? parseFloat(hiddenLng.value) : null;
+
+    const newReport = {
+      id: Date.now(),
+      facilityType: facilityType,
+      locationDetail: locationDetail,
+      description: description,
+      latitude: latVal,
+      longitude: lngVal,
+      photoBase64: currentPhotoData || null,
+      status: 'menunggu',
+      timestamp: new Date().toISOString()
+    };
+    reportsDatabase.push(newReport);
+    saveReports();
+
+    // reset form
+    document.getElementById('facilityType').value = '';
+    document.getElementById('locationDetail').value = '';
+    document.getElementById('description').value = '';
+    if(currentPhotoData) {
+      currentPhotoData = null;
+      previewContainer.innerHTML = '';
+    }
+    hiddenLat.value = '';
+    hiddenLng.value = '';
+    gpsStatusSpan.innerText = 'Belum tersedia — tekan tombol ambil lokasi';
+    currentLat = null;
+    alert(`✅ Laporan #${newReport.id} terkirim! Tim sarpras akan segera memproses.`);
+    window.scrollTo({ top: document.querySelector('.app-wrapper').offsetTop, behavior: 'smooth' });
+  });
+
+  // initial load
+  loadReports();
+
+  // service worker (tetap dari template awal)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => console.log('✅ SW Registered'))
+      .catch(err => console.error('SW error:', err));
+  }
+
+  // tambahan demo permission tidak mengganggu user
+  if (navigator.permissions && navigator.permissions.query) {
+    navigator.permissions.query({ name: 'geolocation' }).catch(()=>{});
+  }
+</script>
 </body>
-
 </html>

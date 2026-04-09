@@ -12,7 +12,7 @@
 }
 
 body {
-  background: var(--bg);
+  background: #574B90;
   color: var(--text);
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@ body {
 }
 
 button {
-  background: var(--primary);
+  background: #7FCBD7;
   border: none;
   color: white;
   padding: 0.75rem 1.25rem;
