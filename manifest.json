@@ -30,7 +30,7 @@
   "screenshots": [
     {
       "src": "icons/screenshot1.png",
-      "sizes": "1080x1920",
+      "sizes": "800x3628",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Tampilan Formulir Pelaporan"

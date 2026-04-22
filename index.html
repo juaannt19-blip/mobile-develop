@@ -326,6 +326,186 @@
         align-items: flex-start;
       }
     }
+
+    /* ========== TAMBAHAN BARU: FAQ & SEARCH PANEL ========== */
+    .utility-bar {
+      max-width: 1280px;
+      margin: 1rem auto 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .search-panel {
+      flex: 2;
+      min-width: 220px;
+      background: white;
+      border-radius: 60px;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      padding: 0.2rem 0.2rem 0.2rem 1rem;
+      background: white;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .search-panel:focus-within {
+      border-color: #F59E0B;
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+    }
+    .search-icon {
+      font-size: 1.2rem;
+      margin-right: 8px;
+      color: #F59E0B;
+    }
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 0.8rem 0;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .search-input::placeholder {
+      color: #94A3B8;
+    }
+    .search-clear {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0 12px;
+      color: #94A3B8;
+      transition: 0.1s;
+    }
+    .search-clear:hover {
+      color: #F59E0B;
+    }
+
+    .faq-panel {
+      flex: 3;
+      background: white;
+      border-radius: 40px;
+      border: 1px solid #E2E8F0;
+      padding: 0.2rem 0.2rem 0.2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: 0.1s;
+      background: white;
+    }
+    .faq-panel:hover {
+      border-color: #F59E0B;
+      background: #FFFCF5;
+    }
+    .faq-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .faq-icon {
+      font-size: 1.3rem;
+    }
+    .faq-text {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #1E293B;
+    }
+    .faq-badge {
+      background: #F1F5F9;
+      border-radius: 40px;
+      padding: 4px 12px;
+      font-size: 0.7rem;
+      color: #0F172A;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    /* Modal FAQ overlay */
+    .faq-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(15,23,42,0.75);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .faq-modal-content {
+      background: white;
+      max-width: 600px;
+      width: 90%;
+      border-radius: 32px;
+      box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      animation: fadeSlideUp 0.2s ease;
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .faq-modal-header {
+      background: #0F172A;
+      padding: 1.2rem 1.5rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-modal-header h3 {
+      font-weight: 600;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: white;
+      opacity: 0.8;
+    }
+    .faq-list {
+      padding: 1rem 1.5rem 1.8rem;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid #ECF3F9;
+      padding: 1rem 0;
+    }
+    .faq-question {
+      font-weight: 700;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      color: #0F172A;
+    }
+    .faq-question span:first-child {
+      font-size: 1.2rem;
+    }
+    .faq-answer {
+      margin-top: 8px;
+      margin-left: 32px;
+      font-size: 0.85rem;
+      color: #475569;
+      display: none;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+    .faq-question .toggle-icon {
+      font-size: 0.9rem;
+      transition: 0.1s;
+    }
   </style>
 </head>
 <body>
@@ -339,6 +519,22 @@
     <div class="badge-version">versi 2.0 · offline ready</div>
   </div>
 </header>
+
+<!-- ========== BARU: SEARCH + FAQ (ikon pencarian & tanya) ========== -->
+<div class="utility-bar">
+  <div class="search-panel">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchReportsInput" class="search-input" placeholder="Cari laporan (lokasi, jenis, deskripsi)...">
+    <button id="clearSearchBtn" class="search-clear" title="Hapus pencarian">✖</button>
+  </div>
+  <div class="faq-panel" id="faqTriggerBtn">
+    <div class="faq-left">
+      <span class="faq-icon">❓</span>
+      <span class="faq-text">Pertanyaan Umum (FAQ) seputar pelaporan fasilitas</span>
+    </div>
+    <span class="faq-badge">bantuan</span>
+  </div>
+</div>
 
 <div class="app-wrapper">
   <!-- KIRI: FORM PELAPORAN + MEDIA + GPS -->
@@ -423,6 +619,60 @@
   </p>
 </div>
 
+<!-- Modal FAQ (tambahan) -->
+<div id="faqModal" class="faq-modal">
+  <div class="faq-modal-content">
+    <div class="faq-modal-header">
+      <h3><span>❓</span> Pertanyaan Umum (FAQ)</h3>
+      <button class="close-modal" id="closeFaqModalBtn">&times;</button>
+    </div>
+    <div class="faq-list" id="faqListContainer">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>📌</span> <span>Bagaimana cara melaporkan fasilitas rusak?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">Isi form di sebelah kiri: pilih jenis fasilitas, lokasi, deskripsi, foto (opsional), dan ambil koordinat GPS. Lalu klik "KIRIM LAPORAN". Laporan akan masuk ke daftar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>🛠️</span> <span>Bagaimana status laporan diperbarui?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">Tim sarpras (atau demo) bisa mengubah status dari "MENUNGGU" menjadi "DIPROSES" lalu "SELESAI". Klik tombol "Ubah Status" di tiket laporan untuk simulasi progres.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>📸</span> <span>Apakah wajib menyertakan foto?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">Tidak wajib, tetapi sangat direkomendasikan agar tim teknis lebih cepat memahami kerusakan. Foto disimpan secara lokal (base64) di penyimpanan browser.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>🌐</span> <span>Apakah lokasi GPS diperlukan?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">Ya, untuk membantu petugas menemukan lokasi tepat kerusakan. Tekan tombol "Ambil Lokasi Saya" dan izinkan akses lokasi pada perangkat.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>🔍</span> <span>Bagaimana cara mencari laporan lama?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">Gunakan kotak pencarian di atas (ikon 🔍) — ketik kata kunci seperti nama gedung, jenis kerusakan, atau status. Daftar akan langsung tersaring.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>💾</span> <span>Apakah data laporan tersimpan secara permanen?</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">Data disimpan di localStorage browser Anda. Untuk aplikasi riil, laporan akan dikirim ke server backend. Saat ini hanya demo offline.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // ---------- STORAGE & DATA LAPORAN ----------
   let reportsDatabase = [];
@@ -467,13 +717,26 @@
     renderReportList();
   }
 
+  // fungsi render dengan filter pencarian
+  let currentSearchQuery = "";
+
   function renderReportList() {
     const container = document.getElementById('dynamicReportList');
-    if(!reportsDatabase.length) {
-      container.innerHTML = `<div style="text-align:center; padding:2rem; background:#F8FAFE; border-radius:28px;">📭 Belum ada laporan. Kirim laporan pertama anda.</div>`;
+    let filteredReports = [...reportsDatabase];
+    if(currentSearchQuery.trim() !== "") {
+      const query = currentSearchQuery.trim().toLowerCase();
+      filteredReports = filteredReports.filter(r => 
+        r.facilityType.toLowerCase().includes(query) ||
+        r.locationDetail.toLowerCase().includes(query) ||
+        r.description.toLowerCase().includes(query) ||
+        (r.status && r.status.toLowerCase().includes(query))
+      );
+    }
+    if(!filteredReports.length) {
+      container.innerHTML = `<div style="text-align:center; padding:2rem; background:#F8FAFE; border-radius:28px;">🔎 Tidak ada laporan yang cocok dengan "${escapeHtml(currentSearchQuery)}"</div>`;
       return;
     }
-    const sorted = [...reportsDatabase].reverse();
+    const sorted = [...filteredReports].reverse();
     container.innerHTML = sorted.map(r => `
       <div class="report-ticket" data-id="${r.id}">
         <div class="ticket-header">
@@ -637,6 +900,47 @@
     currentLat = null;
     alert(`✅ Laporan #${newReport.id} terkirim! Tim sarpras akan segera memproses.`);
     window.scrollTo({ top: document.querySelector('.app-wrapper').offsetTop, behavior: 'smooth' });
+  });
+
+  // ----- PENCARIAN realtime -----
+  const searchInput = document.getElementById('searchReportsInput');
+  const clearSearchBtn = document.getElementById('clearSearchBtn');
+  function updateSearch() {
+    currentSearchQuery = searchInput.value;
+    renderReportList();
+  }
+  searchInput.addEventListener('input', updateSearch);
+  clearSearchBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    updateSearch();
+  });
+
+  // ----- FAQ MODAL & interaksi -----
+  const faqModal = document.getElementById('faqModal');
+  const faqTrigger = document.getElementById('faqTriggerBtn');
+  const closeModalBtn = document.getElementById('closeFaqModalBtn');
+
+  faqTrigger.addEventListener('click', () => {
+    faqModal.style.display = 'flex';
+  });
+  function closeModal() {
+    faqModal.style.display = 'none';
+  }
+  closeModalBtn.addEventListener('click', closeModal);
+  window.addEventListener('click', (e) => {
+    if (e.target === faqModal) closeModal();
+  });
+  // accordion FAQ
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const questionDiv = item.querySelector('.faq-question');
+    const answerDiv = item.querySelector('.faq-answer');
+    const toggleIcon = questionDiv.querySelector('.toggle-icon');
+    questionDiv.addEventListener('click', () => {
+      const isOpen = answerDiv.classList.contains('show');
+      answerDiv.classList.toggle('show');
+      toggleIcon.innerHTML = isOpen ? '▼' : '▲';
+    });
   });
 
   // initial load
