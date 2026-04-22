@@ -68,16 +68,15 @@
     "productivity",
     "education"
   ],
-  "file_handlers": [
+  "scope_extensions": [
     {
-      "action": "./index.html",
-      "accept": {
-        "image/jpeg": [".jpg", ".jpeg"],
-        "image/png": [".png"],
-        "image/webp": [".webp"],
-        "application/pdf": [".pdf"]
-      },
-      "launch_type": "multiple-clients"
+      "origin": "https://sarprasid.example.com"
+    },
+    {
+      "origin": "https://api.sarprasid.example.com"
+    },
+    {
+      "origin": "https://cdn.sarprasid.example.com"
     }
   ]
 }
