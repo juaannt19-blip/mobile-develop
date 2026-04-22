@@ -28,7 +28,7 @@
     },
     {
       "src": "icons/maskot.png",
-      "sizes": "512x512",
+      "sizes": "1024X1024",
       "type": "image/png",
       "purpose": "any"
     }
@@ -36,14 +36,14 @@
   "screenshots": [
     {
       "src": "icons/screenshot1.png",
-      "sizes": "800x3628",
+      "sizes": "800x3968",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Tampilan Formulir Pelaporan"
     },
     {
       "src": "icons/screenshot2.png",
-      "sizes": "1920x1080",
+      "sizes": "1862x862",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Tampilan Riwayat Laporan"
