@@ -37,19 +37,26 @@
     }
   ],
   "shortcuts": [
-    {
-      "name": "Kirim Laporan Baru",
-      "short_name": "Lapor",
-      "url": "./index.html",
-      "icons": [
-        {
-          "src": "icons/icon1.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
+  {
+    "name": "Kirim Laporan Baru",
+    "short_name": "Lapor",
+    "url": "./index.html",
+    "icons": [
+      {
+        "src": "icons/icon1.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "icons/icon2.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      }
+    ]
+  }
+],
   "categories": [
     "productivity",
     "education"
