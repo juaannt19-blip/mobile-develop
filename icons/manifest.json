@@ -1,0 +1,72 @@
+{
+  "id": "sarpras-id-v2",
+  "name": "SarprasID — Pelaporan Fasilitas Kampus",
+  "short_name": "SarprasID",
+  "description": "Aplikasi crowdsourcing pelaporan kerusakan fasilitas kampus secara realtime dan transparan.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "orientation": "portrait",
+  "dir": "ltr",
+  "lang": "id",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/icon1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "icons/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tampilan Utama Laporan"
+    },
+    {
+      "src": "icons/screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Daftar Riwayat Laporan"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Kirim Laporan Baru",
+      "short_name": "Lapor",
+      "url": "./index.html",
+      "icons": [
+        {
+          "src": "icons/icon1.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "./index.html",
+      "name": "Unggah foto kerusakan",
+      "accept": {
+        "image/*": [".jpg", ".jpeg", ".png", ".webp"]
+      }
+    }
+  ],
+  "categories": [
+    "productivity",
+    "education"
+  ]
+}
