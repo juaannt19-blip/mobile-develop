@@ -1,47 +1,46 @@
 {
-  "id": "./",
-  "name": "PWA Template Responsif",
-  "short_name": "PWA Demo",
-  "description": "Aplikasi PWA responsif untuk demonstrasi template dasar Progressive Web App dengan dukungan offline dan installable.",
+  "id": "sarpras-id-v2",
+  "name": "SarprasID — Pelaporan Fasilitas Kampus",
+  "short_name": "SarprasID",
+  "description": "Aplikasi crowdsourcing pelaporan kerusakan fasilitas kampus secara realtime dan transparan.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#4F46E5",
-  "theme_color": "#4F46E5",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
   "orientation": "portrait",
   "lang": "id",
   "icons": [
     {
-      "src": "icons/icon-192x192-A.ico.png",
+      "src": "icons/logo1.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-512x512-B.png",
+      "src": "icons/logo1.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
     {
       "src": "icons/screenshot1.png",
       "sizes": "1080x1920",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/screenshot2.png",
-      "sizes": "1080x1920",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tampilan Formulir Pelaporan"
     }
   ],
   "shortcuts": [
     {
-      "name": "Buka Beranda",
-      "short_name": "Home",
+      "name": "Kirim Laporan Baru",
+      "short_name": "Lapor",
       "url": "./index.html",
       "icons": [
         {
-          "src": "icons/icon-192x192-A.png",
+          "src": "icons/logo1.png",
           "sizes": "192x192"
         }
       ]
@@ -49,6 +48,6 @@
   ],
   "categories": [
     "productivity",
-    "utilities"
+    "education"
   ]
 }
