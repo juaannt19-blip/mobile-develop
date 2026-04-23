@@ -29,6 +29,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "assets/maskot.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "screenshots": [
