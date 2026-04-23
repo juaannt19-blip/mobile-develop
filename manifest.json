@@ -29,12 +29,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "assets/maskot.png",
-      "sizes": "any",
-      "type": "image/png",
-      "purpose": "any"
     }
   ],
   "screenshots": [
@@ -76,9 +70,11 @@
   ],
   "categories": [
     "productivity",
-    "education",
-    "note_taking"
+    "education"
   ],
+  "note_taking": {
+    "new_note_url": "./index.html"
+  },
   "share_target": {
     "action": "./index.html",
     "method": "POST",
