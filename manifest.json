@@ -13,6 +13,21 @@
   "dir": "ltr",
   "lang": "id",
   "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.sarprasid.app",
+      "id": "com.sarprasid.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/sarprasid/id000000000"
+    },
+    {
+      "platform": "webapp",
+      "url": "https://juaannt19-blip.github.io/manifest.json"
+    }
+  ],
   "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "edge_side_panel": {
     "preferred_width": 400
