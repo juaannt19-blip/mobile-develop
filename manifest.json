@@ -73,7 +73,7 @@
     "education"
   ],
   "note_taking": {
-    "new_note_url": "./index.html"
+    "new_note_url": "./index.html?new_note=true"
   },
   "share_target": {
     "action": "./index.html",
