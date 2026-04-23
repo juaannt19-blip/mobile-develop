@@ -72,6 +72,15 @@
     "productivity",
     "education"
   ],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+sarpras",
+      "url": "./index.html?protocol=%s"
+    }
+  ],
   "note_taking": {
     "new_note_url": "./index.html?new_note=true"
   },
