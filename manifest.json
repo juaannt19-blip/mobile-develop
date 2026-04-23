@@ -93,12 +93,6 @@
       }
     }
   ],
-  "related_applications": [
-    {
-      "platform": "webapp",
-      "url": "https://juaannt19-blip.github.io/mobile-develop/index.html"
-    }
-  ],
   "scope_extensions": [
     {
       "type": "origin",
