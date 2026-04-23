@@ -93,37 +93,6 @@
       }
     }
   ],
-  "related_applications": [
-    {
-      "platform": "webapp",
-      "url": "https://juaannt19-blip.github.io/mobile-develop/index.html"
-    }
-  ],
-  "widgets": [
-    {
-      "name": "SarprasID Widget",
-      "description": "Widget pelaporan fasilitas kampus",
-      "tag": "sarpras-widget",
-      "ms_ac_template": "widgets/template.json",
-      "data": "widgets/data.json",
-      "type": "application/json",
-      "screenshots": [
-        {
-          "src": "icons/screenshot1.png",
-          "sizes": "800x3968",
-          "label": "Widget SarprasID"
-        }
-      ],
-      "icons": [
-        {
-          "src": "icons/icon1.png",
-          "sizes": "192x192"
-        }
-      ],
-      "auth": false,
-      "update": 86400
-    }
-  ],
   "scope_extensions": [
     {
       "type": "origin",
